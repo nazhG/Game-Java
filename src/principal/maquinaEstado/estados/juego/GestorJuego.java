@@ -24,7 +24,7 @@ public class GestorJuego implements EstadoJuego {
     //Mapa mapa = new Mapa("/texto/prueba");
     RamsMap mapa = new RamsMap(5);
     private long coolDown = 0;
-    private long coolDownSpaceBar = 3000000000L;
+    private long coolDownSpaceBar = 500_000_000L;
 
     ArrayList<Ente> entes = new ArrayList();
     int jugador;
@@ -43,9 +43,9 @@ public class GestorJuego implements EstadoJuego {
     @Override
     public void actualizar() {
         //gestor de cooldown
-        if (GestorControles.teclado.espacio.isPulsada()) {
-            //coolDown = System.nanoTime() + coolDownSpaceBar;
-            mapa.reGenerar();
+        if (GestorControles.teclado.espacio.isPulsada() && (coolDown < System.nanoTime())) {
+            coolDown = System.nanoTime() + coolDownSpaceBar;
+            mapa.reGenerarMapaAlt();
         }
         for (Ente ente : entes) {
             ente.actualizar();
