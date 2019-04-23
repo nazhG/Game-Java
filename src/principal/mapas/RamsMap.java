@@ -43,6 +43,9 @@ public class RamsMap {
         if (drawLay) {
             lay.dibujar(g, false);
         }
+        for (Room hall : halls) {
+            
+        }
         for (Room room : rooms) {
             g.fillRect(room.x, room.y, room.width, room.height);
             g.setColor(Color.black);
